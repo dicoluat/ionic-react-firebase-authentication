@@ -1,3 +1,4 @@
+import './styles.scss';
 import React, {Component} from 'react';
 import {compose} from 'recompose';
 
@@ -5,10 +6,10 @@ import {
   AuthUserContext,
   withAuthorization,
   withEmailVerification,
-} from '../Session';
-import {withFirebase} from '../Firebase';
-import {PasswordForgetForm} from '../PasswordForget';
-import PasswordChangeForm from '../PasswordChange';
+} from '../../components/Session';
+import {withFirebase} from '../../components/Firebase';
+import {PasswordForgetForm} from '../ForgotPassword';
+import PasswordChangeForm from '../../components/PasswordChange';
 import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 
 const SIGN_IN_METHODS = [
@@ -37,7 +38,7 @@ const AccountPage = () => (
         <IonHeader>
           <IonToolbar>
             <IonButtons slot={'start'}>
-              <IonMenuButton />
+              <IonMenuButton/>
             </IonButtons>
             <IonTitle>
               Account: {authUser.email}

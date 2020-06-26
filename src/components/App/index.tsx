@@ -2,19 +2,13 @@ import React from 'react';
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 
 import Navigation from '../Navigation';
-import LandingPage from '../Landing';
-import SignUpPage from '../SignUp';
-import SignInPage from '../SignIn';
-import PasswordForgetPage from '../PasswordForget';
-import HomePage from '../Home';
-import AccountPage from '../Account';
-import AdminPage from '../Admin';
+
 
 import * as ROUTES from '../../constants/routes';
 import {withAuthentication} from '../Session';
 import {IonReactRouter} from "@ionic/react-router";
 import {IonApp, IonRouterOutlet, IonSplitPane} from "@ionic/react";
-import Home from "../../pages/Home";
+import {AccountPage, AdminPage, ForgotPasswordPage, HomePage, LandingPage, LoginPage, RegisterPage} from "../../pages";
 
 const App = () => (
   <>
@@ -50,14 +44,14 @@ const App = () => (
             {/*<Route exact path="/" render={() => <Redirect to="/home"/>}/>*/}
 
             <Route exact path={ROUTES.LANDING} component={LandingPage}/>
-            <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
-            <Route path={ROUTES.SIGN_IN} component={SignInPage}/>
+            <Route path={ROUTES.SIGN_UP} component={RegisterPage}/>
+            <Route path={ROUTES.SIGN_IN} component={LoginPage}/>
             <Route path={ROUTES.HOME} component={HomePage}/>
             <Route path={ROUTES.ACCOUNT} component={AccountPage}/>
             <Route path={ROUTES.ADMIN} component={AdminPage}/>
             <Route
               path={ROUTES.PASSWORD_FORGET}
-              component={PasswordForgetPage}
+              component={ForgotPasswordPage}
             />
           </IonRouterOutlet>
         </IonSplitPane>

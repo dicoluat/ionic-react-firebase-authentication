@@ -1,8 +1,9 @@
+import './styles.scss';
 import React from 'react';
 import {compose} from 'recompose';
 
-import {withAuthorization, withEmailVerification} from '../Session';
-import Messages from '../Messages';
+import {withAuthorization, withEmailVerification} from '../../components/Session';
+import Messages from '../../components/Messages';
 import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 
 const HomePage = () => (
@@ -10,7 +11,7 @@ const HomePage = () => (
     <IonHeader>
       <IonToolbar>
         <IonButtons slot={'start'}>
-          <IonMenuButton />
+          <IonMenuButton/>
         </IonButtons>
         <IonTitle>Home Page</IonTitle>
       </IonToolbar>

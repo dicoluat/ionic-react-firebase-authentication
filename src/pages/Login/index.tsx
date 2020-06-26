@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {compose} from 'recompose';
 
-import {SignUpLink} from '../SignUp';
-import {PasswordForgetLink} from '../PasswordForget';
-import {withFirebase} from '../Firebase';
+import {SignUpLink} from '../Register';
+import {PasswordForgetLink} from '../ForgotPassword';
+import {withFirebase} from '../../components/Firebase';
 import * as ROUTES from '../../constants/routes';
 import {
   IonButton,
@@ -24,7 +24,7 @@ const SignInPage = () => (
     <IonHeader>
       <IonToolbar>
         <IonButtons slot={'start'}>
-          <IonMenuButton />
+          <IonMenuButton/>
         </IonButtons>
         <IonTitle>
           Sign In

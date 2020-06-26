@@ -36,7 +36,6 @@ class Navigation extends React.Component<any, any> {
 class NavigationAuth extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    console.log('ROUTES', ROUTES);
   }
 
   render() {
