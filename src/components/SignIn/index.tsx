@@ -6,17 +6,26 @@ import {SignUpLink} from '../SignUp';
 import {PasswordForgetLink} from '../PasswordForget';
 import {withFirebase} from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
-    <SignInForm/>
-    <SignInGoogle/>
-    <SignInFacebook/>
-    <SignInTwitter/>
-    <PasswordForgetLink/>
-    <SignUpLink/>
-  </div>
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>
+          SignIn
+        </IonTitle>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent>
+      <SignInForm/>
+      <SignInGoogle/>
+      <SignInFacebook/>
+      <SignInTwitter/>
+      <PasswordForgetLink/>
+      <SignUpLink/>
+    </IonContent>
+  </IonPage>
 );
 
 const INITIAL_STATE = {

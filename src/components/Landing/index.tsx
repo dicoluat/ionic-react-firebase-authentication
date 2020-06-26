@@ -1,9 +1,20 @@
 import React from 'react';
+import {IonButtons, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 
 const Landing: React.FC = () => (
-  <div>
-    <h1>Landing</h1>
-  </div>
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <IonButtons slot={'start'}>
+          <IonMenuButton />
+        </IonButtons>
+        <IonTitle>
+          Landing
+        </IonTitle>
+      </IonToolbar>
+
+    </IonHeader>
+  </IonPage>
 );
 
 export default Landing;

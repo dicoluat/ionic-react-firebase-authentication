@@ -5,6 +5,7 @@ import {compose} from 'recompose';
 import {withFirebase} from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
+import {IonContent, IonHeader, IonPage, IonRouterLink, IonTitle, IonToolbar} from "@ionic/react";
 
 const SignUpPage = () => (
   <div>
@@ -101,57 +102,69 @@ class SignUpFormBase extends Component<any, any> {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <label>
-          Admin:
-          <input
-            name="isAdmin"
-            type="checkbox"
-            checked={isAdmin}
-            onChange={this.onChangeCheckbox}
-          />
-        </label>
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>
+              Sign Up
+            </IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <form onSubmit={this.onSubmit}>
+            <input
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Full Name"
+            />
+            <input
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+            />
+            <input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+            />
+            <input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm Password"
+            />
+            <label>
+              Admin:
+              <input
+                name="isAdmin"
+                type="checkbox"
+                checked={isAdmin}
+                onChange={this.onChangeCheckbox}
+              />
+            </label>
+            <button disabled={isInvalid} type="submit">
+              Sign Up
+            </button>
 
-        {error && <p>{error.message}</p>}
-      </form>
+            {error && <p>{error.message}</p>}
+          </form>
+        </IonContent>
+      </IonPage>
+
     );
   }
 }
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    Don't have an account? <IonRouterLink routerLink={ROUTES.SIGN_UP}>Sign Up</IonRouterLink>
   </p>
 );
 

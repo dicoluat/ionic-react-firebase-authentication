@@ -2,6 +2,7 @@ import React from 'react';
 
 import AuthUserContext from './context';
 import {withFirebase} from '../Firebase';
+import {IonButton, IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 
 const needsEmailVerification = (authUser: any) =>
   authUser &&
@@ -30,27 +31,39 @@ const withEmailVerification = (Component: any) => {
           {authUser =>
             needsEmailVerification(authUser) ? (
               <div>
-                {this.state.isSent ? (
-                  <p>
-                    E-Mail confirmation sent: Check your E-Mails (Spam
-                    folder included) for a confirmation E-Mail.
-                    Refresh this page once you confirmed your E-Mail.
-                  </p>
-                ) : (
-                  <p>
-                    Verify your E-Mail: Check your E-Mails (Spam folder
-                    included) for a confirmation E-Mail or send
-                    another confirmation E-Mail.
-                  </p>
-                )}
+                <IonPage>
+                  <IonHeader>
+                    <IonToolbar>
+                      <IonButtons slot={'start'}>
+                        <IonMenuButton />
+                      </IonButtons>
+                      <IonTitle>Account</IonTitle>
+                    </IonToolbar>
+                  </IonHeader>
+                  <IonContent>
+                    {this.state.isSent ? (
+                      <p>
+                        E-Mail confirmation sent: Check your E-Mails (Spam
+                        folder included) for a confirmation E-Mail.
+                        Refresh this page once you confirmed your E-Mail.
+                      </p>
+                    ) : (
+                      <p>
+                        Verify your E-Mail: Check your E-Mails (Spam folder
+                        included) for a confirmation E-Mail or send
+                        another confirmation E-Mail.
+                      </p>
+                    )}
 
-                <button
-                  type="button"
-                  onClick={this.onSendEmailVerification}
-                  disabled={this.state.isSent}
-                >
-                  Send confirmation E-Mail
-                </button>
+                    <IonButton
+                      type="button"
+                      onClick={this.onSendEmailVerification}
+                      disabled={this.state.isSent}
+                    >
+                      Send confirmation E-Mail
+                    </IonButton>
+                  </IonContent>
+                </IonPage>
               </div>
             ) : (
               <Component {...this.props} />

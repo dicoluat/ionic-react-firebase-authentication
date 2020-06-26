@@ -9,6 +9,7 @@ import {
 import {withFirebase} from '../Firebase';
 import {PasswordForgetForm} from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
+import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 
 const SIGN_IN_METHODS = [
   {
@@ -32,12 +33,21 @@ const SIGN_IN_METHODS = [
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {(authUser: any) => (
-      <div>
-        <h1>Account: {authUser.email}</h1>
-        <PasswordForgetForm/>
-        <PasswordChangeForm/>
-        <LoginManagement authUser={authUser}/>
-      </div>
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>
+              Account: {authUser.email}
+            </IonTitle>
+          </IonToolbar>
+
+        </IonHeader>
+        <IonContent>
+          <PasswordForgetForm/>
+          <PasswordChangeForm/>
+          <LoginManagement authUser={authUser}/>
+        </IonContent>
+      </IonPage>
     )}
   </AuthUserContext.Consumer>
 );
@@ -188,36 +198,46 @@ class DefaultLoginToggle extends Component<any, any> {
     const isInvalid =
       passwordOne !== passwordTwo || passwordOne === '';
 
-    return isEnabled ? (
-      <button
-        type="button"
-        onClick={() => onUnlink(signInMethod.id)}
-        disabled={onlyOneLeft}
-      >
-        Deactivate {signInMethod.id}
-      </button>
-    ) : (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="New Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm New Password"
-        />
+    return (
+      <IonPage>
+        <IonContent>
+          {
+            isEnabled ? (
+              <button
+                type="button"
+                onClick={() => onUnlink(signInMethod.id)}
+                disabled={onlyOneLeft}
+              >
+                Deactivate {signInMethod.id}
+              </button>
+            ) : (
+              <form onSubmit={this.onSubmit}>
+                <input
+                  name="passwordOne"
+                  value={passwordOne}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="New Password"
+                />
+                <input
+                  name="passwordTwo"
+                  value={passwordTwo}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Confirm New Password"
+                />
 
-        <button disabled={isInvalid} type="submit">
-          Link {signInMethod.id}
-        </button>
-      </form>
-    );
+                <button disabled={isInvalid} type="submit">
+                  Link {signInMethod.id}
+                </button>
+              </form>
+            )
+          }
+        </IonContent>
+      </IonPage>
+
+
+    )
   }
 }
 

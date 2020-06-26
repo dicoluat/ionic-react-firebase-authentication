@@ -5,23 +5,32 @@ import {AuthUserContext} from '../Session';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
-import {IonRouterLink} from "@ionic/react";
+import {IonContent, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterLink} from "@ionic/react";
 
 class Navigation extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
   }
+
   render() {
-    return <AuthUserContext.Consumer>
-      {(authUser: any) =>
-        authUser ? (
-          <NavigationAuth authUser={authUser}/>
-        ) : (
-          <NavigationNonAuth/>
-        )
-      }
-    </AuthUserContext.Consumer>;
+    return (
+      <IonMenu type="overlay" disabled={false} contentId="main">
+        <IonContent forceOverscroll={false}>
+          <AuthUserContext.Consumer>
+
+            {(authUser: any) =>
+              authUser ? (
+                <NavigationAuth authUser={authUser}/>
+              ) : (
+                <NavigationNonAuth/>
+              )
+            }
+          </AuthUserContext.Consumer>
+        </IonContent>
+      </IonMenu>
+    )
   }
+
 }
 
 class NavigationAuth extends React.Component<any, any> {
@@ -29,26 +38,39 @@ class NavigationAuth extends React.Component<any, any> {
     super(props);
     console.log('ROUTES', ROUTES);
   }
+
   render() {
-    return <ul>
-      <li>
-        <IonRouterLink routerLink={ROUTES.LANDING}>Landing</IonRouterLink>
-      </li>
-      <li>
-        <IonRouterLink routerLink={ROUTES.HOME}>Home</IonRouterLink>
-      </li>
-      <li>
-        <IonRouterLink routerLink={ROUTES.ACCOUNT}>Account</IonRouterLink>
-      </li>
-      {/*{!!this.props.authUser.roles[ROLES.ADMIN] && (
-        <li>
-          <IonRouterLink to={ROUTES.ADMIN}>Admin</Link>
-        </li>
-      )}
-      <li>
-        <SignOutButton/>
-      </li>*/}
-    </ul>;
+    return (
+      <>
+        <IonList>
+          <IonMenuToggle auto-hide="false">
+            <IonItem routerLink={ROUTES.LANDING}>
+              <IonLabel>Landing</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
+          <IonMenuToggle auto-hide="false">
+            <IonItem routerLink={ROUTES.HOME}>
+              <IonLabel>Home</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
+          <IonMenuToggle auto-hide="false">
+            <IonItem routerLink={ROUTES.ACCOUNT}>
+              <IonLabel>Account</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
+          <IonMenuToggle auto-hide="false">
+            <IonItem>
+              <SignOutButton/>
+            </IonItem>
+          </IonMenuToggle>
+        </IonList>
+        {/*{!!this.props.authUser.roles[ROLES.ADMIN] && (
+          <li>
+            <IonRouterLink routerLink={ROUTES.ADMIN}>Admin</IonRouterLink>
+          </li>
+        )}*/}
+      </>
+    )
   }
 }
 
@@ -56,15 +78,21 @@ class NavigationNonAuth extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
   }
+
   render() {
-    return <ul>
-      <li>
-        <IonRouterLink routerLink={ROUTES.LANDING}>Landing</IonRouterLink>
-      </li>
-      <li>
-        <IonRouterLink routerLink={ROUTES.SIGN_IN}>Sign In</IonRouterLink>
-      </li>
-    </ul>;
+    return <IonList>
+      <IonMenuToggle auto-hide="false">
+        <IonItem routerLink={ROUTES.LANDING}>
+          <IonLabel>Landing</IonLabel>
+        </IonItem>
+      </IonMenuToggle>
+
+      <IonMenuToggle auto-hide="false">
+        <IonItem routerLink={ROUTES.SIGN_IN}>
+          <IonLabel>Sign In</IonLabel>
+        </IonItem>
+      </IonMenuToggle>
+    </IonList>
   }
 }
 

@@ -15,10 +15,10 @@ class Firebase {
   private serverValue: any;
   private emailAuthProvider: any;
   private auth: any;
-  private db: any;
   private googleProvider: any;
   private facebookProvider: any;
   private twitterProvider: any;
+  private db: firebase.database.Database;
 
   constructor() {
     app.initializeApp(config);
@@ -74,15 +74,17 @@ class Firebase {
   onAuthUserListener = (next: any, fallback: any) =>
     this.auth.onAuthStateChanged((authUser: any) => {
       if (authUser) {
+
         this.user(authUser.uid)
           .once('value')
           .then((snapshot: any) => {
+
             const dbUser = snapshot.val();
 
             // default empty roles
-            if (!dbUser.roles) {
+            /*if (!dbUser.roles) {
               dbUser.roles = {};
-            }
+            }*/
 
             // merge auth and db user
             authUser = {

@@ -13,12 +13,12 @@ import AdminPage from '../Admin';
 import * as ROUTES from '../../constants/routes';
 import {withAuthentication} from '../Session';
 import {IonReactRouter} from "@ionic/react-router";
-import {IonApp, IonRouterOutlet} from "@ionic/react";
+import {IonApp, IonRouterOutlet, IonSplitPane} from "@ionic/react";
 import Home from "../../pages/Home";
 
 const App = () => (
   <>
-   {/* <Router>
+    {/* <Router>
       <div>
         <Navigation/>
 
@@ -38,28 +38,29 @@ const App = () => (
     </Router>
     */}
 
+
     <IonApp>
-
-
-      <hr/>
       <IonReactRouter>
-        <Navigation/>
-        <IonRouterOutlet>
+        <IonSplitPane contentId="main">
+          <Navigation/>
+          <IonRouterOutlet id="main">
 
-          {/*<Route path="/home" component={Home} exact={true}/>*/}
-          {/*<Route exact path="/" render={() => <Redirect to="/home"/>}/>*/}
 
-          <Route exact path={ROUTES.LANDING} component={LandingPage}/>
-          <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
-          <Route path={ROUTES.SIGN_IN} component={SignInPage}/>
-          <Route path={ROUTES.HOME} component={HomePage}/>
-          <Route path={ROUTES.ACCOUNT} component={AccountPage}/>
-          <Route path={ROUTES.ADMIN} component={AdminPage}/>
-          <Route
-            path={ROUTES.PASSWORD_FORGET}
-            component={PasswordForgetPage}
-          />
-        </IonRouterOutlet>
+            {/*<Route path="/home" component={Home} exact={true}/>*/}
+            {/*<Route exact path="/" render={() => <Redirect to="/home"/>}/>*/}
+
+            <Route exact path={ROUTES.LANDING} component={LandingPage}/>
+            <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
+            <Route path={ROUTES.SIGN_IN} component={SignInPage}/>
+            <Route path={ROUTES.HOME} component={HomePage}/>
+            <Route path={ROUTES.ACCOUNT} component={AccountPage}/>
+            <Route path={ROUTES.ADMIN} component={AdminPage}/>
+            <Route
+              path={ROUTES.PASSWORD_FORGET}
+              component={PasswordForgetPage}
+            />
+          </IonRouterOutlet>
+        </IonSplitPane>
       </IonReactRouter>
     </IonApp>
   </>

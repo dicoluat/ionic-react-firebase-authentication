@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 import {withFirebase} from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import {IonRouterLink} from "@ionic/react";
 
 const PasswordForgetPage = () => (
   <div>
@@ -68,7 +69,7 @@ class PasswordForgetFormBase extends Component<any, any> {
 
 const PasswordForgetLink = () => (
   <p>
-    <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
+    <IonRouterLink routerLink={ROUTES.PASSWORD_FORGET}>Forgot Password?</IonRouterLink>
   </p>
 );
 
