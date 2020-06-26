@@ -9,7 +9,7 @@ import {
 import {withFirebase} from '../Firebase';
 import {PasswordForgetForm} from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
-import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
+import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 
 const SIGN_IN_METHODS = [
   {
@@ -36,6 +36,9 @@ const AccountPage = () => (
       <IonPage>
         <IonHeader>
           <IonToolbar>
+            <IonButtons slot={'start'}>
+              <IonMenuButton />
+            </IonButtons>
             <IonTitle>
               Account: {authUser.email}
             </IonTitle>

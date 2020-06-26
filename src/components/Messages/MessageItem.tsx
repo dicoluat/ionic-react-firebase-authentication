@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {IonButton, IonButtons, IonItem, IonLabel} from "@ionic/react";
 
 class MessageItem extends Component<any, any> {
   constructor(props: any) {
@@ -17,7 +18,7 @@ class MessageItem extends Component<any, any> {
     });
   };
 
-  onChangeEditText = (event:any) => {
+  onChangeEditText = (event: any) => {
     this.setState({editText: event.target.value});
   };
 
@@ -32,7 +33,7 @@ class MessageItem extends Component<any, any> {
     const {editMode, editText} = this.state;
 
     return (
-      <li>
+      <IonItem>
         {editMode ? (
           <input
             type="text"
@@ -40,34 +41,37 @@ class MessageItem extends Component<any, any> {
             onChange={this.onChangeEditText}
           />
         ) : (
-          <span>
-            <strong>{message.userId}</strong> {message.text}
-            {message.editedAt && <span>(Edited)</span>}
-          </span>
+          <IonLabel>
+            <div><strong>{message.userId}</strong></div>
+            <div>
+              {message.text}
+              {message.editedAt && <span>(Edited)</span>}
+            </div>
+          </IonLabel>
         )}
 
         {authUser.uid === message.userId && (
-          <span>
+          <IonButtons>
             {editMode ? (
               <span>
-                <button onClick={this.onSaveEditText}>Save</button>
-                <button onClick={this.onToggleEditMode}>Reset</button>
+                <IonButton onClick={this.onSaveEditText}>Save</IonButton>
+                <IonButton onClick={this.onToggleEditMode}>Reset</IonButton>
               </span>
             ) : (
-              <button onClick={this.onToggleEditMode}>Edit</button>
+              <IonButton onClick={this.onToggleEditMode}>Edit</IonButton>
             )}
 
             {!editMode && (
-              <button
+              <IonButton
                 type="button"
                 onClick={() => onRemoveMessage(message.uid)}
               >
                 Delete
-              </button>
+              </IonButton>
             )}
-          </span>
+          </IonButtons>
         )}
-      </li>
+      </IonItem>
     );
   }
 }

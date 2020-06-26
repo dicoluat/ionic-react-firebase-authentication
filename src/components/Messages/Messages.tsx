@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {AuthUserContext} from '../Session';
 import {withFirebase} from '../Firebase';
 import MessageList from './MessageList';
+import {IonButton, IonCard, IonInput, IonItem, IonLabel, IonList, IonTextarea} from "@ionic/react";
 
 class Messages extends Component<any, any> {
   constructor(props: any) {
@@ -118,12 +119,18 @@ class Messages extends Component<any, any> {
                 this.onCreateMessage(event, authUser)
               }
             >
-              <input
-                type="text"
-                value={text}
-                onChange={this.onChangeText}
-              />
-              <button type="submit">Send</button>
+              <IonList>
+                <IonItem>
+                  <IonLabel position={'stacked'}>Message</IonLabel>
+                  <IonTextarea
+                    placeholder={'Your message'}
+                    value={text}
+                    onChange={this.onChangeText}
+                  />
+                </IonItem>
+              </IonList>
+              <IonButton slot={'end'} type="submit">Send</IonButton>
+
             </form>
           </div>
         )}

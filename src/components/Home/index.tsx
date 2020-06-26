@@ -3,14 +3,23 @@ import {compose} from 'recompose';
 
 import {withAuthorization, withEmailVerification} from '../Session';
 import Messages from '../Messages';
+import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 
 const HomePage = () => (
-  <div>
-    <h1>Home Page</h1>
-    <p>The Home Page is accessible by every signed in user.</p>
-
-    <Messages/>
-  </div>
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <IonButtons slot={'start'}>
+          <IonMenuButton />
+        </IonButtons>
+        <IonTitle>Home Page</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent>
+      <p>The Home Page is accessible by every signed in user.</p>
+      <Messages/>
+    </IonContent>
+  </IonPage>
 );
 
 const condition = (authUser: any) => !!authUser;

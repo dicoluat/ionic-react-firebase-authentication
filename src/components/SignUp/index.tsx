@@ -5,7 +5,16 @@ import {compose} from 'recompose';
 import {withFirebase} from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
-import {IonContent, IonHeader, IonPage, IonRouterLink, IonTitle, IonToolbar} from "@ionic/react";
+import {
+  IonBackButton, IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader, IonInput, IonItem, IonLabel, IonList,
+  IonPage,
+  IonRouterLink,
+  IonTitle, IonToggle,
+  IonToolbar
+} from "@ionic/react";
 
 const SignUpPage = () => (
   <div>
@@ -105,6 +114,9 @@ class SignUpFormBase extends Component<any, any> {
       <IonPage>
         <IonHeader>
           <IonToolbar>
+            <IonButtons slot="start">
+              <IonBackButton defaultHref={'/signin'} />
+            </IonButtons>
             <IonTitle>
               Sign Up
             </IonTitle>
@@ -112,46 +124,58 @@ class SignUpFormBase extends Component<any, any> {
         </IonHeader>
         <IonContent>
           <form onSubmit={this.onSubmit}>
-            <input
-              name="username"
-              value={username}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Full Name"
-            />
-            <input
-              name="email"
-              value={email}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Email Address"
-            />
-            <input
-              name="passwordOne"
-              value={passwordOne}
-              onChange={this.onChange}
-              type="password"
-              placeholder="Password"
-            />
-            <input
-              name="passwordTwo"
-              value={passwordTwo}
-              onChange={this.onChange}
-              type="password"
-              placeholder="Confirm Password"
-            />
-            <label>
-              Admin:
-              <input
-                name="isAdmin"
-                type="checkbox"
-                checked={isAdmin}
-                onChange={this.onChangeCheckbox}
-              />
-            </label>
-            <button disabled={isInvalid} type="submit">
+            <IonList>
+              <IonItem>
+                <IonInput
+                  name="username"
+                  value={username}
+                  onChange={this.onChange}
+                  type="text"
+                  placeholder="Full Name"
+                />
+              </IonItem>
+              <IonItem>
+                <IonInput
+                  name="email"
+                  value={email}
+                  onChange={this.onChange}
+                  type="text"
+                  placeholder="Email Address"
+                />
+              </IonItem>
+              <IonItem>
+                <IonInput
+                  name="passwordOne"
+                  value={passwordOne}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Password"
+                />
+              </IonItem>
+              <IonItem>
+                <IonInput
+                  name="passwordTwo"
+                  value={passwordTwo}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+              </IonItem>
+              <IonItem>
+                <IonLabel>
+                  Admin:
+                </IonLabel>
+                  <IonToggle
+                    name="isAdmin"
+                    checked={isAdmin}
+                    onChange={this.onChangeCheckbox}
+                  />
+              </IonItem>
+            </IonList>
+
+            <IonButton disabled={isInvalid} type="submit">
               Sign Up
-            </button>
+            </IonButton>
 
             {error && <p>{error.message}</p>}
           </form>

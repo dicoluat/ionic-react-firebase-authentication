@@ -6,24 +6,50 @@ import {SignUpLink} from '../SignUp';
 import {PasswordForgetLink} from '../PasswordForget';
 import {withFirebase} from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
+import {
+  IonButton,
+  IonButtons, IonCol,
+  IonContent,
+  IonHeader, IonInput,
+  IonItem,
+  IonList,
+  IonMenuButton,
+  IonPage, IonRow,
+  IonTitle,
+  IonToolbar
+} from "@ionic/react";
 
 const SignInPage = () => (
   <IonPage>
     <IonHeader>
       <IonToolbar>
+
         <IonTitle>
-          SignIn
+          Sign In
         </IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent>
       <SignInForm/>
-      <SignInGoogle/>
-      <SignInFacebook/>
-      <SignInTwitter/>
-      <PasswordForgetLink/>
-      <SignUpLink/>
+      <IonRow>
+        <IonCol>
+          <SignInGoogle/>
+        </IonCol>
+        <IonCol>
+          <SignInFacebook/>
+        </IonCol>
+        <IonCol>
+          <SignInTwitter/>
+        </IonCol>
+      </IonRow>
+      <IonRow>
+        <IonCol>
+          <PasswordForgetLink/>
+        </IonCol>
+        <IonCol>
+          <SignUpLink/>
+        </IonCol>
+      </IonRow>
     </IonContent>
   </IonPage>
 );
@@ -78,24 +104,29 @@ class SignInFormBase extends Component<any, any> {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
+        <IonList>
+          <IonItem>
+            <IonInput
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+            />
+          </IonItem>
+          <IonItem>
+            <IonInput
+              name="password"
+              value={password}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+            />
+          </IonItem>
+        </IonList>
+        <IonButton disabled={isInvalid} type="submit">
           Sign In
-        </button>
-
+        </IonButton>
         {error && <p>{error.message}</p>}
       </form>
     );
@@ -140,7 +171,7 @@ class SignInGoogleBase extends Component<any, any> {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+        <IonButton type="submit">Sign In with Google</IonButton>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -161,8 +192,8 @@ class SignInFacebookBase extends Component<any, any> {
       .then((socialAuthUser: any) => {
         // Create a user in your Firebase Realtime Database too
         return this.props.firebase.user(socialAuthUser.user.uid).set({
-          username: socialAuthUser.additionalUserInfo.profile.name,
-          email: socialAuthUser.additionalUserInfo.profile.email,
+          username: socialAuthUser.additionalUserInfo.profile.name || '',
+          email: socialAuthUser.additionalUserInfo.profile.email || '',
           roles: {},
         });
       })
@@ -186,7 +217,7 @@ class SignInFacebookBase extends Component<any, any> {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Facebook</button>
+        <IonButton type="submit">Sign In with Facebook</IonButton>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -207,8 +238,8 @@ class SignInTwitterBase extends Component<any, any> {
       .then((socialAuthUser: any) => {
         // Create a user in your Firebase Realtime Database too
         return this.props.firebase.user(socialAuthUser.user.uid).set({
-          username: socialAuthUser.additionalUserInfo.profile.name,
-          email: socialAuthUser.additionalUserInfo.profile.email,
+          username: socialAuthUser.additionalUserInfo.profile.name || '',
+          email: socialAuthUser.additionalUserInfo.profile.email || '',
           roles: {},
         });
       })
@@ -232,7 +263,7 @@ class SignInTwitterBase extends Component<any, any> {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Twitter</button>
+        <IonButton type="submit">Sign In with Twitter</IonButton>
 
         {error && <p>{error.message}</p>}
       </form>

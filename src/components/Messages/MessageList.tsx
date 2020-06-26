@@ -1,6 +1,7 @@
 import React from 'react';
 
 import MessageItem from './MessageItem';
+import {IonList} from "@ionic/react";
 
 const MessageList = ({
   authUser,
@@ -8,7 +9,7 @@ const MessageList = ({
   onEditMessage,
   onRemoveMessage,
 }:any) => (
-  <ul>
+  <IonList>
     {messages.map( (message:any) => (
       <MessageItem
         authUser={authUser}
@@ -18,7 +19,7 @@ const MessageList = ({
         onRemoveMessage={onRemoveMessage}
       />
     ))}
-  </ul>
+  </IonList>
 );
 
 export default MessageList;

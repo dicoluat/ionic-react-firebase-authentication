@@ -89,9 +89,9 @@ class Firebase {
             // merge auth and db user
             authUser = {
               uid: authUser.uid,
-              email: authUser.email,
-              emailVerified: authUser.emailVerified,
-              providerData: authUser.providerData,
+              email: authUser.email || '',
+              emailVerified: authUser.emailVerified || '',
+              providerData: authUser.providerData || '',
               ...dbUser,
             };
 
