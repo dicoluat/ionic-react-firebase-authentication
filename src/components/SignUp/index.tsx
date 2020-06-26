@@ -129,7 +129,7 @@ class SignUpFormBase extends Component<any, any> {
                 <IonInput
                   name="username"
                   value={username}
-                  onChange={this.onChange}
+                  onIonChange={this.onChange}
                   type="text"
                   placeholder="Full Name"
                 />
@@ -138,7 +138,7 @@ class SignUpFormBase extends Component<any, any> {
                 <IonInput
                   name="email"
                   value={email}
-                  onChange={this.onChange}
+                  onIonChange={this.onChange}
                   type="text"
                   placeholder="Email Address"
                 />
@@ -147,7 +147,7 @@ class SignUpFormBase extends Component<any, any> {
                 <IonInput
                   name="passwordOne"
                   value={passwordOne}
-                  onChange={this.onChange}
+                  onIonChange={this.onChange}
                   type="password"
                   placeholder="Password"
                 />
@@ -156,7 +156,7 @@ class SignUpFormBase extends Component<any, any> {
                 <IonInput
                   name="passwordTwo"
                   value={passwordTwo}
-                  onChange={this.onChange}
+                  onIonChange={this.onChange}
                   type="password"
                   placeholder="Confirm Password"
                 />
@@ -168,7 +168,7 @@ class SignUpFormBase extends Component<any, any> {
                   <IonToggle
                     name="isAdmin"
                     checked={isAdmin}
-                    onChange={this.onChangeCheckbox}
+                    onIonChange={this.onChangeCheckbox}
                   />
               </IonItem>
             </IonList>

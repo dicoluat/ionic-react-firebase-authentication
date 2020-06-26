@@ -23,7 +23,9 @@ const SignInPage = () => (
   <IonPage>
     <IonHeader>
       <IonToolbar>
-
+        <IonButtons slot={'start'}>
+          <IonMenuButton />
+        </IonButtons>
         <IonTitle>
           Sign In
         </IonTitle>
@@ -58,6 +60,7 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
+  isValid: false
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS =
@@ -98,7 +101,7 @@ class SignInFormBase extends Component<any, any> {
   };
 
   render() {
-    const {email, password, error} = this.state;
+    const {email, password, error, isValid} = this.state;
 
     const isInvalid = password === '' || email === '';
 
@@ -109,7 +112,7 @@ class SignInFormBase extends Component<any, any> {
             <IonInput
               name="email"
               value={email}
-              onChange={this.onChange}
+              onIonChange={this.onChange}
               type="text"
               placeholder="Email Address"
             />
@@ -118,7 +121,7 @@ class SignInFormBase extends Component<any, any> {
             <IonInput
               name="password"
               value={password}
-              onChange={this.onChange}
+              onIonChange={this.onChange}
               type="password"
               placeholder="Password"
             />

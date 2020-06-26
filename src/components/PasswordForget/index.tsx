@@ -74,7 +74,7 @@ class PasswordForgetFormBase extends Component<any, any> {
             <IonInput
               name="email"
               value={this.state.email}
-              onChange={this.onChange}
+              onIonChange={this.onChange}
               type="text"
               placeholder="Email Address"
             />
